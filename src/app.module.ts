@@ -3,6 +3,7 @@ import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TaskModule } from './tasks/tasks.module.js';
 
 @Module({
   imports: [
@@ -17,11 +18,13 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         password: config.get<string>('DB_PASSWORD', 'postgres'),
         database: config.get<string>('DB_NAME', '3000s'),
         autoLoadEntities: true,
-        synchronize: true,
+        synchronize: false,
+        migrationsRun: false,
         retryAttempts: 10,
         retryDelay: 3000,
       }),
     }),
+    TaskModule,
   ],
   controllers: [AppController],
   providers: [AppService],

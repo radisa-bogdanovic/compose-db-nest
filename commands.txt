@@ -32,3 +32,29 @@ docker compose down -v
 docker compose down --rmi local
 
 
+///
+
+
+
+GET /tasks === ovo ce povuci sve taskove
+GET /tasks/n ovo ce povuci task pod rednim brojem n AKO postoji
+POST /task === ovo ce napraviti task 
+PATCH /task/n === promenis task n
+DELETE /task/n === uklonis task n
+
+
+
+ .\db\migrations\001_create_tasks.up.sql -Raw | docker compose exec -T db psql -U postgres -d appdb --sa ovom komandom pravimo tasks tabelu
+
+
+ docker compose exec db psql -U postgres -d appdb -c "\d tasks"  --- sa ovom komandom proveravamo da li tabela postoji 
+
+
+
+  docker compose exec db psql -U postgres -d appdb -c "INSERT INTO schema_migrations (version) VALUES ('001_create_tasks')" -DODAJEMO U TABELU  vrednosti 
+
+
+   docker compose exec db psql -U postgres -d appdb -c "SELECT * FROM schema_migrations;" - citanje iz tabele 
+
+
+   npm install class-validator class-transformer

@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS "tasks" (
+    "id" SERIAL PRIMARY KEY,
+    "title" VARCHAR(120) NOT NULL,
+    "description" TEXT NULL,
+    "completed" BOOLEAN NOT NULL DEFAULT FALSE,
+    "createdAt" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    "updatedAt" TIMESTAMPTZ NOT NULL DEFAULT NOW()
+)
